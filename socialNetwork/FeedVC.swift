@@ -14,7 +14,7 @@ class FeedVC: UIViewController {
     
     
     @IBOutlet weak var tableView: UITableView!
-    @IBAction func button(_ sender: AnyObject) {
+    @IBAction func buttonLogOut(_ sender: AnyObject) {
        let keychainResult = KeychainWrapper.removeObjectForKey(UID_KEYCHAIN)
         print("UNINO: ID remove from keychain\(keychainResult)")
         try! FIRAuth.auth()?.signOut()
@@ -25,7 +25,11 @@ class FeedVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.dataSource = self
-
+        
+        DataService.ds.REF_POSTS.observe(.value, with: {snapshot in
+        print(snapshot.value)
+        
+        })
     }
 }
 
@@ -35,7 +39,7 @@ extension FeedVC: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
         
         return cell
     }

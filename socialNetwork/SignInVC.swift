@@ -60,7 +60,8 @@ class SignInVC: UIViewController {
             if error == nil {
             print("UNINU: Email user authenticate with Firebase - \(error)")
                 if let user = user {
-                 self.completeLogIn(id: (user.uid))
+                    let dataUser = ["provider": user.providerID]
+                    self.completeLogIn(id: user.uid, userData: dataUser)
                 
                 }
             }
@@ -71,7 +72,8 @@ class SignInVC: UIViewController {
                 } else {
                 print("UNINU: Succesfully authenticated with Emails")
                     if let user = user {
-                    self.completeLogIn(id: (user.uid))
+                        let dataUser = ["provider": user.providerID]
+                        self.completeLogIn(id: user.uid, userData: dataUser)
                     }
                    
                 }
@@ -92,7 +94,8 @@ class SignInVC: UIViewController {
 
         } else {
             if let user = user {
-            self.completeLogIn(id: user.uid)
+                let dataUser = ["provider": credential.provider]
+            self.completeLogIn(id: user.uid, userData: dataUser)
             }
         }
     })
@@ -100,7 +103,8 @@ class SignInVC: UIViewController {
     
     }
     
-    func completeLogIn(id: String) {
+    func completeLogIn(id: String, userData: Dictionary<String,String>) {
+        DataService.ds.createFirebaseDBUser(uid: id, userData: userData)
        let keychainResult = KeychainWrapper.setString(id, forKey: UID_KEYCHAIN)
         print("UNINA: Data saved to keychain \(keychainResult)")
         performSegue(withIdentifier: "gotoFeed", sender: nil)

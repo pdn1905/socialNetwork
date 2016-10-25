@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		043610B71DBF5BA800BAF1E1 /* PostCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043610B61DBF5BA800BAF1E1 /* PostCell.swift */; };
+		043610B91DBF5F8200BAF1E1 /* CirceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043610B81DBF5F8200BAF1E1 /* CirceView.swift */; };
+		043610BB1DBF644000BAF1E1 /* MaterialvIEW.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043610BA1DBF644000BAF1E1 /* MaterialvIEW.swift */; };
+		043610BE1DBF85D900BAF1E1 /* DataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043610BD1DBF85D900BAF1E1 /* DataService.swift */; };
 		04A987C11DBBA72200A8AF7A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A987C01DBBA72200A8AF7A /* AppDelegate.swift */; };
 		04A987C31DBBA72200A8AF7A /* SignInVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A987C21DBBA72200A8AF7A /* SignInVC.swift */; };
 		04A987C61DBBA72200A8AF7A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04A987C41DBBA72200A8AF7A /* Main.storyboard */; };
@@ -19,6 +23,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		043610B61DBF5BA800BAF1E1 /* PostCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostCell.swift; sourceTree = "<group>"; };
+		043610B81DBF5F8200BAF1E1 /* CirceView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CirceView.swift; sourceTree = "<group>"; };
+		043610BA1DBF644000BAF1E1 /* MaterialvIEW.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MaterialvIEW.swift; sourceTree = "<group>"; };
+		043610BD1DBF85D900BAF1E1 /* DataService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataService.swift; sourceTree = "<group>"; };
 		04A987BD1DBBA72200A8AF7A /* socialNetwork.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = socialNetwork.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		04A987C01DBBA72200A8AF7A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		04A987C21DBBA72200A8AF7A /* SignInVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInVC.swift; sourceTree = "<group>"; };
@@ -47,6 +55,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		043610BC1DBF859500BAF1E1 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				043610BD1DBF85D900BAF1E1 /* DataService.swift */,
+			);
+			name = Service;
+			sourceTree = "<group>";
+		};
 		04A987B41DBBA72200A8AF7A = {
 			isa = PBXGroup;
 			children = (
@@ -68,6 +84,7 @@
 		04A987BF1DBBA72200A8AF7A /* socialNetwork */ = {
 			isa = PBXGroup;
 			children = (
+				043610BC1DBF859500BAF1E1 /* Service */,
 				04B3BF401DBC648600D05867 /* Util */,
 				04A987D71DBBC64000A8AF7A /* socialNetwork.entitlements */,
 				04A987D61DBBAA2200A8AF7A /* Controller */,
@@ -93,6 +110,9 @@
 			isa = PBXGroup;
 			children = (
 				04A987C41DBBA72200A8AF7A /* Main.storyboard */,
+				043610B61DBF5BA800BAF1E1 /* PostCell.swift */,
+				043610B81DBF5F8200BAF1E1 /* CirceView.swift */,
+				043610BA1DBF644000BAF1E1 /* MaterialvIEW.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -263,9 +283,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				04A987C31DBBA72200A8AF7A /* SignInVC.swift in Sources */,
+				043610B91DBF5F8200BAF1E1 /* CirceView.swift in Sources */,
 				04DBE4D71DBC90D900BDF902 /* FeedVC.swift in Sources */,
 				04A987C11DBBA72200A8AF7A /* AppDelegate.swift in Sources */,
 				04B3BF421DBC649C00D05867 /* Contants.swift in Sources */,
+				043610BB1DBF644000BAF1E1 /* MaterialvIEW.swift in Sources */,
+				043610B71DBF5BA800BAF1E1 /* PostCell.swift in Sources */,
+				043610BE1DBF85D900BAF1E1 /* DataService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
