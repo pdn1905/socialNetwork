@@ -10,7 +10,10 @@ import UIKit
 import Firebase
 import SwiftKeychainWrapper
 
-class FeedVC: UIViewController {
+class FeedVC: UIViewController, UIImagePickerControllerDelegate,UINavigationControllerDelegate {
+    
+    var posts = [Post]()
+    var imagePicker : UIImagePickerController!
     
     
     @IBOutlet weak var tableView: UITableView!
@@ -26,21 +29,58 @@ class FeedVC: UIViewController {
         super.viewDidLoad()
         tableView.dataSource = self
         
-        DataService.ds.REF_POSTS.observe(.value, with: {snapshot in
-        print(snapshot.value)
+        //picker Image
+        imagePicker = UIImagePickerController()
+        imagePicker.delegate = self
+        imagePicker.allowsEditing = true
         
+        DataService.ds.REF_POSTS.observe(.value, with: {snapshot in
+            if let snapsho = snapshot.children.allObjects as? [FIRDataSnapshot] {
+                for snap in snapsho {
+                print("SNAPP: \(snap)")
+                    
+                    if let postDict = snap.value as? Dictionary<String,Any> {
+                    let key = snap.key
+                        let post = Post(keyPost: key, dataPost: postDict)
+                        self.posts.append(post)
+                    }
+                }
+            
+            }
+        self.tableView.reloadData()
         })
+    }
+    @IBOutlet weak var imageAdd: UIImageView!
+    
+    // picker image
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        
+        if let image = info[UIImagePickerControllerEditedImage] as? UIImage {
+        imageAdd.image = image
+        } else {
+        print("JESS: a valid image wasn't selected")
+        }
+        imagePicker.dismiss(animated: true, completion: nil)
+    }
+    
+    @IBAction func addImageButton(_ sender: AnyObject) {
+        present(imagePicker, animated: true, completion: nil)
     }
 }
 
 extension FeedVC: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 4
+        return posts.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
+        let post = posts[indexPath.row]
+        if let cell = tableView.dequeueReusableCell(withIdentifier: "Cell") as? PostCell {
+        cell.cofigureCell(post: post)
+            return cell
+        } else {
+        return PostCell()
+        }
         
-        return cell
     }
 }

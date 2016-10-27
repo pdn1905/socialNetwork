@@ -16,8 +16,17 @@ class PostCell: UITableViewCell {
     @IBOutlet weak var nameLabel: UILabel!
     
     @IBOutlet weak var postImage: UIImageView!
+    @IBOutlet weak var likesLabel: UILabel!
     
     @IBOutlet weak var captionLabel: UILabel!
+    
+    func cofigureCell(post : Post){
+    self.captionLabel.text = post.caption
+        self.likesLabel.text = "\(post.likes)"
+        
+    }
+    
+   
     
 
     override func awakeFromNib() {

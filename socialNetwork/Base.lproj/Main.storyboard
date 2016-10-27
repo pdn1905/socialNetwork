@@ -169,10 +169,14 @@
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BFM-go-K6z">
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Xlarge Icons-100-2" translatesAutoresizingMaskIntoConstraints="NO" id="iPN-8b-JIs">
+                                    <imageView contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Xlarge Icons-100-2" translatesAutoresizingMaskIntoConstraints="NO" id="iPN-8b-JIs" customClass="CircleView" customModule="socialNetwork" customModuleProvider="target">
+                                        <gestureRecognizers/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="iPN-8b-JIs" secondAttribute="height" multiplier="65:63" id="E5U-cu-Dpy"/>
                                         </constraints>
+                                        <connections>
+                                            <outletCollection property="gestureRecognizers" destination="s8n-7I-m4l" appends="YES" id="VkY-rp-pLH"/>
+                                        </connections>
                                     </imageView>
                                     <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oPo-x3-VFA">
                                         <state key="normal" image="Literature-100-2"/>
@@ -293,6 +297,7 @@ on each page that you use our icons.</string>
                                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <connections>
                                             <outlet property="captionLabel" destination="6tP-RY-lCo" id="mXY-zy-VME"/>
+                                            <outlet property="likesLabel" destination="X9L-99-CBU" id="5Fv-sY-Qmj"/>
                                             <outlet property="nameLabel" destination="fDm-yu-gdu" id="qAD-SF-lAY"/>
                                             <outlet property="postImage" destination="qrI-ez-ycR" id="rUv-fE-GKL"/>
                                             <outlet property="profileImage" destination="lOm-pN-Dxb" id="C3I-oI-E6K"/>
@@ -317,13 +322,19 @@ on each page that you use our icons.</string>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="imageAdd" destination="iPN-8b-JIs" id="t8G-7x-x9P"/>
                         <outlet property="tableView" destination="wgI-aU-ifY" id="JRR-fj-1VR"/>
                         <segue destination="BYZ-38-t0r" kind="show" identifier="gotoLogin" id="tMW-kP-uDK"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GST-aQ-1sL" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="s8n-7I-m4l">
+                    <connections>
+                        <action selector="addImageButton:" destination="vTu-UN-5IQ" id="T9B-9a-mQ3"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="1384" y="52"/>
+            <point key="canvasLocation" x="1382" y="52"/>
         </scene>
     </scenes>
     <resources>
