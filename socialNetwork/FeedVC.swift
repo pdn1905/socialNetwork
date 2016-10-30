@@ -14,6 +14,7 @@ class FeedVC: UIViewController, UIImagePickerControllerDelegate,UINavigationCont
     
     var posts = [Post]()
     var imagePicker : UIImagePickerController!
+    static var imageCache: NSCache<NSString, UIImage> = NSCache()
     
     
     @IBOutlet weak var tableView: UITableView!
@@ -76,11 +77,16 @@ extension FeedVC: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let post = posts[indexPath.row]
         if let cell = tableView.dequeueReusableCell(withIdentifier: "Cell") as? PostCell {
-        cell.cofigureCell(post: post)
-            return cell
+            if let img = FeedVC.imageCache.object(forKey: post.imageURL as NSString) {
+            cell.cofigureCell(post: post, img: img)
+                return cell
+            } else {
+            cell.cofigureCell(post: post)
+                return cell
+            }
+        
         } else {
         return PostCell()
         }
-        
     }
 }

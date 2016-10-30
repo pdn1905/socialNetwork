@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 class PostCell: UITableViewCell {
     
@@ -20,10 +21,33 @@ class PostCell: UITableViewCell {
     
     @IBOutlet weak var captionLabel: UILabel!
     
-    func cofigureCell(post : Post){
-    self.captionLabel.text = post.caption
+    var post : Post!
+    
+    func cofigureCell(post : Post, img: UIImage? = nil){
+        self.post = post
+        self.captionLabel.text = post.caption
         self.likesLabel.text = "\(post.likes)"
         
+        
+        if img != nil {
+        self.postImage.image = img
+        } else {
+        let ref = FIRStorage.storage().reference(forURL: post.imageURL)
+            ref.data(withMaxSize: 2 * 1024 * 1024, completion: { (data, error) in
+                if error != nil {
+                print("UMOMO: Unable dowload image")
+                } else {
+                print("UMOMO: Dowloaded image from Firebase Storage")
+                    if let imageData = data {
+                        if let img = UIImage(data: imageData){
+                        self.postImage.image = img
+                            FeedVC.imageCache.setObject(img,forKey: post.imageURL as NSString)
+                        }
+                    }
+                }
+                
+            })
+        }
     }
     
    
